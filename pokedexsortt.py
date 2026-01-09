@@ -1,7 +1,8 @@
 from datetime import datetime
-from pdb import run
-from tkinter import END
-from tracemalloc import stop
+import time
+import math
+
+start_time = time.perf_counter()
 
 type_order = {
     "Normal": 1, "Fire": 2, "Water": 3, "Electric": 4, 
@@ -74,6 +75,10 @@ pokedex = [
     {"name": "Abra", "evol_stage": 1, "generation": 1, "health": 50, "type": "Psychic", "strength": "Poison, Ground", "weakness": "Fighting, Poison"}
 ]
 
+total = 0
+for i in range(1000000):
+    total += i
+
 def pokedex_sort(data_list, key):
     n = len(data_list)
     for i in range(n):
@@ -122,7 +127,6 @@ while running:
         'g': ('weakness', "Weakness"),
         'h': ('exit', "Exit")
     }
-
     if choice == 'h':
         print("\nExiting Pokedex Sorter (Selection Sort). Thank you!")
         break
@@ -141,6 +145,12 @@ while running:
             weakness = p['weakness']
             print(f"{p['name']:15} | {p['evol_stage']:<6} | {p['generation']:<4} | "
             f"{p['health']:<4} | {p['type']:<8} | {strength:<30} | {weakness}")
+        print("-" * 120)
+        
+        end_time = time.perf_counter()
+        time_taken = end_time - start_time
+        
+        print(f"Time Taken: {time_taken:.4f} seconds")
         print("-" * 120)
 
     else:
